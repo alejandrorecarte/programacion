@@ -1,4 +1,4 @@
-package Sesion071022;
+package BlackJack;
 
 public class Carta {
 

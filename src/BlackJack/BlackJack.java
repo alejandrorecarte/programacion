@@ -1,4 +1,4 @@
-package Sesion071022;
+package BlackJack;
 
 import java.util.Scanner;
 import java.util.LinkedList;
@@ -6,31 +6,29 @@ import java.util.Collections;
 
     /**
      * @author Alejandro Recarte Rebollo
-     * @version 1.0
+     * @version 1.1
      */
 
-public class Sesion071022 {
+public class BlackJack {
 
     //LINKED LISTS
-
     private static LinkedList<Carta> cartasJugador;
     private static LinkedList<Carta> cartasCrupier;
     private static LinkedList<Carta> barajaShuffled;
     private static LinkedList<Carta> CARTAS;
 
     //VARIABLES
-
     private static int fichas = 1000;
     private static int fichasJuego;
     private static int valorJugador;
-    public static int valorCrupier;
+    private static int valorCrupier;
     private static int asesJugador;
     private static int asesCrupier;
-    private static String nombre;
+
+    //SCANNER
     private static Scanner scr;
 
     //ARRAYS
-
     private static String[] PALOS = {"Picas", "Corazones", "Diamantes", "Treboles"};
     private static String[] UNICODE = {"\uD83C\uDCA1", "\uD83C\uDCA2","\uD83C\uDCA3","\uD83C\uDCA4","\uD83C\uDCA5","\uD83C\uDCA6","\uD83C\uDCA7","\uD83C\uDCA8","\uD83C\uDCA9","\uD83C\uDCAA","\uD83C\uDCAB","\uD83C\uDCAD","\uD83C\uDCAE"
             ,"\uD83C\uDCB1", "\uD83C\uDCB2","\uD83C\uDCB3","\uD83C\uDCB4","\uD83C\uDCB5","\uD83C\uDCB6","\uD83C\uDCB7","\uD83C\uDCB8","\uD83C\uDCB9","\uD83C\uDCBA","\uD83C\uDCBB","\uD83C\uDCBD","\uD83C\uDCBE"
@@ -48,7 +46,7 @@ public class Sesion071022 {
      * Crea una baraja tipo LinkedList con Objetos Carta
      */
 
-    public static void crearBaraja(){
+    private static void crearBaraja(){
         System.out.println("\033[32m\u22b3 Creando baraja...");
         int contador = 0;
         for(int i = 1; i <= 4; i++){
@@ -88,19 +86,21 @@ public class Sesion071022 {
     }
 
     /**
+     * @author Alejandro Recarte Rebollo y Hugo Ekai Pérez
      * Método que hace comenzar el juego
      */
 
-    public static void comenzarBJ(){
+    private static void comenzarBJ(){
         cartasJugador = new LinkedList();
         cartasCrupier = new LinkedList();
+        barajaShuffled = new LinkedList();
         System.out.println("\u22b3 \u25cd de \u2729JUGADOR\u2729 : "+fichas);
         System.out.println("\u22b3 Escribe cuantas \u25cd deseas apostar: ");
 
         //Introducción de fichas
         try{
             fichasJuego = Integer.parseInt(scr.nextLine());
-        }catch(java.lang.NumberFormatException e){
+        }catch(NumberFormatException e){
             System.out.println("\u22b3 Introduce un valor válido.");
             comenzarBJ();
             System.exit(0);
@@ -124,7 +124,7 @@ public class Sesion071022 {
         }
         //Barajeo de cartas
         for(int i = 0; i < CARTAS.size(); i++){
-            barajaShuffled.add = CARTAS.get(i);
+            barajaShuffled.add(CARTAS.get(i));
         }
         Collections.shuffle(barajaShuffled);
         System.out.println("\u22b3 Repartiendo...");
@@ -150,7 +150,7 @@ public class Sesion071022 {
      * @param b false para imprimir tablero con la carta de crupier oculta, true para descubrirla
      */
 
-    public static void imprimirTablero(boolean b){
+    private static void imprimirTablero(boolean b){
         asesJugador = 0;
         asesCrupier = 0;
         valorJugador = 0;
@@ -197,7 +197,7 @@ public class Sesion071022 {
             if (asesCrupier == 0 && (valorCrupier + (asesCrupier * 9) <= 21)) {
                 System.out.println("\033[32mValor\u21fe | " + (valorCrupier + (asesCrupier * 9)) + " |");
             }else {
-                System.out.println("\033[32mValor\u21fe | " + valorCrupier);
+                System.out.println("\033[32mValor\u21fe | " + valorCrupier + " |");
             }
         } else {
             if (asesCrupier != 0 && (valorCrupier + (asesCrupier * 9) <= 21)) {
@@ -212,7 +212,7 @@ public class Sesion071022 {
      * Método que permite al jugador elegir que desea hacer en el turno.
      */
 
-    public static void turno(){
+    private static void turno(){
         int sel = 0;
         System.out.println("\n\u22b3 Introduce orden (Escribe \"0\" para recordar ordenes):");
         try{
@@ -249,16 +249,17 @@ public class Sesion071022 {
      * Método que da una carta aleatoria al jugador
      */
 
-    public static void pedirCartaJugador(){
+    private static void pedirCartaJugador(){
         cartasJugador.add(barajaShuffled.remove());
         imprimirTablero(false);
-        pedirCartaCrupier();
+        pedirCartaCrupier(false);
     }
 
     /**
      * Método que dice si el crupier coge carta o no
+     * @param plantarse true si el jugador decide plantarse y false si ha pedido una carta
      */
-    public static void pedirCartaCrupier(){
+    private static void pedirCartaCrupier(boolean plantarse){
         int ases = 0;
         int size = cartasCrupier.size();
         int valor = 0;
@@ -269,7 +270,7 @@ public class Sesion071022 {
                 ases++;
             }
         }
-        if (valor < 14 || valor + (ases*9) < 14){
+        do{
             System.out.println("\u22b3 CRUPIER coge carta");
             //Esperar un segundo
             try {
@@ -281,15 +282,22 @@ public class Sesion071022 {
             }
             cartasCrupier.add(barajaShuffled.remove());
             imprimirTablero(false);
-        }
+            for (int i = 0; i < size;i++) {
+                Carta cartaBuffer = cartasCrupier.get(i);
+                valor = valor + cartaBuffer.getValor();
+                if (valor == 1) {
+                    ases++;
+                }
+            }
+        }while((valor < 14 || valor + (ases*9) < 14 || valor<valorJugador) && valor<21 && plantarse == true && valorJugador < 21);
     }
 
     /**
      * Método que termina el juego decidiendo quien pierde finalmente.
      */
 
-    public static void plantarse(){
-        pedirCartaCrupier();
+    private static void plantarse(){
+        pedirCartaCrupier(true);
         imprimirTablero(true);
         switch(checkVictoria()){
             case 0:
@@ -321,7 +329,11 @@ public class Sesion071022 {
         System.out.println("\u22b3 ¿Continuar? (s/n)");
         char sel = 's';
 
-        sel = scr.nextLine().charAt(0);
+        try{
+            sel = scr.nextLine().charAt(0);
+        }catch(StringIndexOutOfBoundsException e){
+            System.out.println("\u22b3 Debes introducir un valor.");
+        }
 
         if(sel == 's') {
             comenzarBJ();
@@ -346,7 +358,7 @@ public class Sesion071022 {
      * @return 0 si jugador pierde, 1 si juegador gana, 2 si hay empate
      */
 
-    public static int checkVictoria(){
+    private static int checkVictoria(){
         while (asesJugador>0){
             if (valorJugador + (asesJugador * 9)<21){
                 valorJugador = valorJugador + (asesJugador * 9);
