@@ -4,14 +4,20 @@ import java.util.Scanner;
 
 public class Ejercicio1 {
 
+    //VARIABLES
     private static float[] temperaturas;
     private static Scanner sc;
 
+    //MAIN
     public static void main(String[] args) {
         sc = new Scanner(System.in);
         menu();
     }
 
+    //METODOS
+    /**
+     * menu permite imprimir por pantalla el menú para que el usuario seleccione la opción que estime a través de un Scanner
+     */
     public static void menu(){
         System.out.println("0.- Salir" +
                 "\n1.- Inicializar un array que recoja la temperatura media de cada mes del año" +
@@ -27,44 +33,65 @@ public class Ejercicio1 {
                 break;
             case 1:
                 temperaturas=inicializar_array(temperaturas);
+                System.out.println("La lista se ha inicialzado correctamente");
                 menu();
                 break;
             case 2:
-                System.out.println("La mayor temperatura del año ha sido en " + mayor_temperatura(temperaturas));
+                if(temperaturas != null) {
+                    System.out.println("La mayor temperatura del año ha sido en " + mayor_temperatura(temperaturas));
+                }else System.out.println("Primero debes inicializar el array usando la opción 1");
                 menu();
                 break;
             case 3:
-                System.out.println("La menor temperatura del año ha sido en " + menor_temperatura(temperaturas));
+                if(temperaturas != null) {
+                    System.out.println("La menor temperatura del año ha sido en " + menor_temperatura(temperaturas));
+                }else System.out.println("Primero debes inicializar el array usando la opción 1");
                 menu();
                 break;
             case 4:
-                System.out.println("Escribe el mes del que quieres saber la temperatura: ");
-                int mes = sc.nextInt();
-                System.out.println("La temperatura media fue de: "+ sacar_temperaturas(mes, temperaturas));
+                if (temperaturas != null) {
+                    System.out.println("Escribe el mes del que quieres saber la temperatura: ");
+                    int mes = sc.nextInt();
+                    System.out.println("La temperatura media fue de: " + sacar_temperaturas(mes, temperaturas));
+                }else System.out.println("Primero debes inicializar el array usando la opción 1");
                 menu();
                 break;
             case 5:
-                System.out.println("La temperatura emdia de verano es: "+sacar_temperaturas_media_verano(temperaturas));
+                if (temperaturas != null) {
+                    System.out.println("La temperatura emdia de verano es: " + sacar_temperaturas_media_verano(temperaturas));
+                }else System.out.println("Primero debes inicializar el array usando la opción 1");
                 menu();
                 break;
             case 6:
-                System.out.println("La tempreatura media de invierno es: " + sacar_temperaturas_media_invierno(temperaturas)); menu(); break;
+                if (temperaturas != null) {
+                    System.out.println("La tempreatura media de invierno es: " + sacar_temperaturas_media_invierno(temperaturas));
+                }else System.out.println("Primero debes inicializar el array usando la opción 1");
+                menu();
+                break;
             case 7:
-                System.out.println("Introduce el primer mes que quieres comparar: ");
-                Meses mes2 = Meses.valueOf(sc.next().toUpperCase());
-                System.out.println("Introduce el segundo mes que quieres comparar: ");
-                Meses mes1 = Meses.valueOf(sc.next().toUpperCase());
-                if(comparar_temperaturas(mes1, mes2, temperaturas) == true){
-                    System.out.println("Los meses comparados tienen la misma temperatura");
-                }else{
-                    System.out.println("Loes meses comparados tienen distinta tempreatura");
-                }
+                if (temperaturas != null) {
+                    System.out.println("Introduce el primer mes que quieres comparar: ");
+                    Meses mes2 = Meses.valueOf(sc.next().toUpperCase());
+                    System.out.println("Introduce el segundo mes que quieres comparar: ");
+                    Meses mes1 = Meses.valueOf(sc.next().toUpperCase());
+                    if (comparar_temperaturas(mes1, mes2, temperaturas) == true) {
+                        System.out.println("Los meses comparados tienen la misma temperatura");
+                    } else {
+                        System.out.println("Loes meses comparados tienen distinta tempreatura");
+                    }
+                }else System.out.println("Primero debes inicializar el array usando la opción 1");
                 menu();
                 break;
             default: System.out.println("El dato introducido es erróneo, vuelva a intentarlo"); menu(); break;
         }
     }
 
+    //FUNCIONES
+    /**
+     * inicializar_array permite inicializar y llenar de datos el array que se le pasa como argumento
+     * @param temperaturas
+     * @return
+     */
     public static float[] inicializar_array(float[] temperaturas){
         temperaturas = new float[12];
         for (int i = 0; i < 12; i++) {
@@ -74,6 +101,11 @@ public class Ejercicio1 {
         return temperaturas;
     }
 
+    /**
+     * mayor_temperatura devuelve el mes del año con mayor temperatura media
+     * @param temperaturas
+     * @return Meses mes
+     */
     public static Meses mayor_temperatura(float[] temperaturas){
         float mayorTemp = temperaturas[0];
         int mes = 0;
@@ -86,6 +118,11 @@ public class Ejercicio1 {
          return sacar_mes(mes);
     }
 
+    /**
+     * menor_temperatura devuelve el mes del año con menor temperatura media
+     * @param temperaturas
+     * @return Meses mes
+     */
     public static Meses menor_temperatura(float[] temperaturas){
         float menorTemp = temperaturas[0];
         int mes = 0;
@@ -98,18 +135,41 @@ public class Ejercicio1 {
         return sacar_mes(mes);
     }
 
+    /**
+     * sacar_temperaturas devuelve la temperatura de un mes introducido con su indice
+     * @param mes
+     * @param temperaturas
+     * @return float temperatura
+     */
     public static float sacar_temperaturas(int mes, float[] temperaturas){
         return temperaturas[mes];
     }
 
+    /**
+     * sacar_temperaturas_media_verano devuelve la temperatura media de los meses de julio, agosto y septiembre
+     * @param temperaturas
+     * @return float temperatura_ media
+     */
     public static float sacar_temperaturas_media_verano(float[] temperaturas){
-        return(temperaturas[7]+temperaturas[8]+temperaturas[9])/3;
+        return(temperaturas[6]+temperaturas[7]+temperaturas[8])/3;
     }
 
+    /**
+     * sacar_temperaturas_media_invierno devuelve la temperatura media de los meses de enero, febrero y marzo
+     * @param temperaturas
+     * @return floar temperatura_media
+     */
     public static float sacar_temperaturas_media_invierno(float[] temperaturas){
-        return(temperaturas[1]+temperaturas[2]+temperaturas[3])/3;
+        return(temperaturas[0]+temperaturas[1]+temperaturas[2])/3;
     }
 
+    /**
+     * comparar_temperaturas permite devolver true o false en función de si la temperatura de dos meses son iguales
+     * @param mes1
+     * @param mes2
+     * @param temperaturas
+     * @return misma_temperatura
+     */
     public static boolean comparar_temperaturas(Meses mes1, Meses mes2, float[] temperaturas) {
         if (temperaturas[sacar_indice(mes1)] == temperaturas[sacar_indice(mes2)]) {
             return true;
@@ -118,6 +178,12 @@ public class Ejercicio1 {
         }
     }
 
+    //FUNCIONES AUXILIARES
+    /**
+     * sacar_indice permite devolver un numero entero con la índice del mes que se le introduce como argumento
+     * @param mes
+     * @return int indice
+     */
     public static int sacar_indice (Meses mes){
         int indice = -1;
         for(int i = 0; i < Meses.values().length; i++){
@@ -128,6 +194,11 @@ public class Ejercicio1 {
         return indice;
     }
 
+    /**
+     * sacar_mes permite devolver el mes del que se le pasa el indice como argumento
+     * @param i
+     * @return Meses mes
+     */
     public static Meses sacar_mes (int i){
         return Meses.values()[i];
     }
