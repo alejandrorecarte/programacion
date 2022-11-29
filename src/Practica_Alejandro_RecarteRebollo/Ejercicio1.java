@@ -30,6 +30,7 @@ public class Ejercicio1 {
 
         switch(sc.nextInt()){
             case 0:
+                salir();
                 break;
             case 1:
                 temperaturas=inicializar_array(temperaturas);
@@ -77,7 +78,7 @@ public class Ejercicio1 {
                     if (comparar_temperaturas(mes1, mes2, temperaturas) == true) {
                         System.out.println("Los meses comparados tienen la misma temperatura");
                     } else {
-                        System.out.println("Loes meses comparados tienen distinta tempreatura");
+                        System.out.println("Los meses comparados tienen distinta temperatura");
                     }
                 }else System.out.println("Primero debes inicializar el array usando la opción 1");
                 menu();
@@ -86,13 +87,21 @@ public class Ejercicio1 {
         }
     }
 
+    //METODOS
+    /**
+     * salir imprime por pantalla que se está saliendo del programa
+     */
+    private static void salir(){
+        System.out.println("Saliendo del programa...");
+    }
+
     //FUNCIONES
     /**
      * inicializar_array permite inicializar y llenar de datos el array que se le pasa como argumento
      * @param temperaturas
      * @return
      */
-    public static float[] inicializar_array(float[] temperaturas){
+    private static float[] inicializar_array(float[] temperaturas){
         temperaturas = new float[12];
         for (int i = 0; i < 12; i++) {
             System.out.println("Introduce la temperatura media de "+ sacar_mes(i));
@@ -106,7 +115,7 @@ public class Ejercicio1 {
      * @param temperaturas
      * @return Meses mes
      */
-    public static Meses mayor_temperatura(float[] temperaturas){
+    private static Meses mayor_temperatura(float[] temperaturas){
         float mayorTemp = temperaturas[0];
         int mes = 0;
         for(int i = 0; i < 12; i++){
@@ -123,7 +132,7 @@ public class Ejercicio1 {
      * @param temperaturas
      * @return Meses mes
      */
-    public static Meses menor_temperatura(float[] temperaturas){
+    private static Meses menor_temperatura(float[] temperaturas){
         float menorTemp = temperaturas[0];
         int mes = 0;
         for(int i = 0; i < 12; i++){
@@ -141,8 +150,8 @@ public class Ejercicio1 {
      * @param temperaturas
      * @return float temperatura
      */
-    public static float sacar_temperaturas(int mes, float[] temperaturas){
-        return temperaturas[mes];
+    private static float sacar_temperaturas(int mes, float[] temperaturas){
+        return temperaturas[mes-1];
     }
 
     /**
@@ -150,7 +159,7 @@ public class Ejercicio1 {
      * @param temperaturas
      * @return float temperatura_ media
      */
-    public static float sacar_temperaturas_media_verano(float[] temperaturas){
+    private static float sacar_temperaturas_media_verano(float[] temperaturas){
         return(temperaturas[6]+temperaturas[7]+temperaturas[8])/3;
     }
 
@@ -159,7 +168,7 @@ public class Ejercicio1 {
      * @param temperaturas
      * @return floar temperatura_media
      */
-    public static float sacar_temperaturas_media_invierno(float[] temperaturas){
+    private static float sacar_temperaturas_media_invierno(float[] temperaturas){
         return(temperaturas[0]+temperaturas[1]+temperaturas[2])/3;
     }
 

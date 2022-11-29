@@ -34,7 +34,7 @@ public class Ejercicio2 {
                 "8.- Introducir un nuevo elemento en la lista");
 
         switch(sc.nextInt()){
-            case 0: break;
+            case 0: salir(); break;
             case 1:
                 lista = hacer_lista(lista);
                 System.out.println("La lista se ha rellenado correctamente");
@@ -42,7 +42,7 @@ public class Ejercicio2 {
                 break;
             case 2:
                 if(lista[0] != null) {
-                    System.out.println("El número de items de la lista es: " + lista.length);
+                    System.out.println("El número de items de la lista es: " + tamano_lista(lista));
                 }else System.out.println("Primero debes inicializar el array usando la opción 1");
                 menu();
                 break;
@@ -95,22 +95,26 @@ public class Ejercicio2 {
                 if(lista[0] != null) {
                     System.out.println("Introduce el elemento que quieres eliminar");
                     lista = eliminar_elemento(lista, sc.next());
-                    System.out.println("La nueva lista es: ");
-                    imprimir_lista(lista);
                 }else System.out.println("Primero debes inicializar el array usando la opción 1");
                 menu();
                 break;
             case 8:
                 if(lista[0] != null) {
                     System.out.println("Introduce el elemento que quieres añadir");
-                    lista = añadir_elemento(lista, sc.next());
-                    System.out.println("La nueva lista es: ");
-                    imprimir_lista(lista);
+                    lista = anadir_elemento(lista, sc.next());
                 }else System.out.println("Primero debes inicializar el array usando la opción 1");
                 menu();
                 break;
             default: System.out.println("El dato introducido es erróneo, vuelva a intentarlo"); menu(); break;
         }
+    }
+
+    //MÉTODOS
+    /**
+     * salir imprime por pantalla que estamos saliendo del programa
+     */
+    private static void salir(){
+        System.out.println("Saliendo del programa...");
     }
 
     //FUNCIONES
@@ -125,6 +129,14 @@ public class Ejercicio2 {
             lista[i] = sc.next();
         }
         return lista;
+    }
+    /**
+     * tamano_lista devuelve el tamaño de la lista que se le pasa como argumento
+     * @param lista
+     * @return lista.length
+     */
+    private static int tamano_lista(String[] lista){
+        return lista.length;
     }
 
     /**
@@ -205,11 +217,13 @@ public class Ejercicio2 {
         String[] lista_resultado = new String[lista.length-cuantas_veces(lista, elemento)];
         int j = 0;
         for(int i = 0; i < lista.length; i++){
-            if (!lista[i].equals(elemento)){
+            if (!lista[i].equals(elemento)) {
                 lista_resultado[j] = lista[i];
                 j++;
             }
         }
+        System.out.println("La nueva lista es: ");
+        imprimir_lista(lista_resultado);
         return lista_resultado;
     }
 
@@ -219,9 +233,11 @@ public class Ejercicio2 {
      * @param elemento
      * @return String[] lista
      */
-    private static String[] añadir_elemento (String[] lista, String elemento){
+    private static String[] anadir_elemento (String[] lista, String elemento){
         lista = Arrays.copyOf(lista, lista.length+1);
         lista[lista.length-1] = elemento;
+        System.out.println("La nueva lista es: ");
+        imprimir_lista(lista);
         return lista;
     }
 
