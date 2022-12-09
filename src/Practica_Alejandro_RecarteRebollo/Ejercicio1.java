@@ -151,7 +151,9 @@ public class Ejercicio1 {
      * @return float temperatura
      */
     private static float sacar_temperaturas(int mes, float[] temperaturas){
-        return temperaturas[mes-1];
+        float temperatura = 0;
+        temperatura = temperaturas[mes-1];
+        return temperatura;
     }
 
     /**
@@ -160,7 +162,9 @@ public class Ejercicio1 {
      * @return float temperatura_ media
      */
     private static float sacar_temperaturas_media_verano(float[] temperaturas){
-        return(temperaturas[6]+temperaturas[7]+temperaturas[8])/3;
+        float media_verano = 0;
+        media_verano = (temperaturas[6]+temperaturas[7]+temperaturas[8])/3;
+        return media_verano;
     }
 
     /**
@@ -169,7 +173,9 @@ public class Ejercicio1 {
      * @return floar temperatura_media
      */
     private static float sacar_temperaturas_media_invierno(float[] temperaturas){
-        return(temperaturas[0]+temperaturas[1]+temperaturas[2])/3;
+        float media_invierno = 0;
+        media_invierno = (temperaturas[0]+temperaturas[1]+temperaturas[2])/3;
+        return media_invierno;
     }
 
     /**
@@ -180,11 +186,11 @@ public class Ejercicio1 {
      * @return misma_temperatura
      */
     public static boolean comparar_temperaturas(Meses mes1, Meses mes2, float[] temperaturas) {
+        boolean comparacion = false;
         if (temperaturas[sacar_indice(mes1)] == temperaturas[sacar_indice(mes2)]) {
-            return true;
-        } else {
-            return false;
+            comparacion = true;
         }
+        return comparacion;
     }
 
     //FUNCIONES AUXILIARES

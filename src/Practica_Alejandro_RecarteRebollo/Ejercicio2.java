@@ -136,7 +136,9 @@ public class Ejercicio2 {
      * @return lista.length
      */
     private static int tamano_lista(String[] lista){
-        return lista.length;
+        int longitud = 0;
+        longitud = lista.length;
+        return longitud;
     }
 
     /**
