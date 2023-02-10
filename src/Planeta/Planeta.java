@@ -89,5 +89,26 @@ public class Planeta {
         return observable;
     }
 
+    public double getDensidad(){return (masa/volumen);}
 
+    public boolean esExterior(){
+        if(distanciaAlSol>149597870*2.75){
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public String toString() {
+        return "Planeta{" +
+                "nombre='" + nombre + '\'' +
+                ", satelites=" + satelites +
+                ", masa=" + masa +
+                ", volumen=" + volumen +
+                ", diametro=" + diametro +
+                ", distanciaAlSol=" + distanciaAlSol +
+                ", tamanio=" + tamanio +
+                ", observable=" + observable +
+                '}';
+    }
 }

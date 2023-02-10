@@ -1,4 +1,4 @@
-package Practica_Alejandro_RecarteRebollo;
+package Practica2_Alejandro_Recarte_Rebollo;
 
 import java.util.Scanner;
 

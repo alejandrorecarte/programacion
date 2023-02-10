@@ -1,4 +1,4 @@
-package Practica_Alejandro_RecarteRebollo;
+package Practica2_Alejandro_Recarte_Rebollo;
 
 public enum Meses {ENERO,FEBRERO,MARZO,ABRIL,MAYO,JUNIO,JULIO,AGOSTO,SEPTIEMBRE,OCTUBRE,NOVIEMBRE,DICIEMBRE}
 
