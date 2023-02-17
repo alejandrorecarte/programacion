@@ -1,11 +1,11 @@
 package Persona;
 
-public class Persona {
+public abstract class Persona {
     //atributos
-    private String dni;
-    private String nombre;
-    private String apellidos;
-    private int edad;
+    protected String dni;
+    protected String nombre;
+    protected String apellidos;
+    protected int edad;
     //métodos
     public void setEdad(int edad) {
         this.edad = edad;
