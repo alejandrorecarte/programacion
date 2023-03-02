@@ -7,7 +7,6 @@ public abstract class Electrodomestico {
     protected final String COLOR_DEFECTO = "blanco";
     protected final char CONSUMO_DEFECTO = 'F';
     protected final double PRECIO_DEFECTO = 100;
-    protected enum COLORES {blanco, negro, rojo, azul, gris};
 
     //DECLARACIÓN DE VARIABLES
     protected double precioBase;
@@ -89,31 +88,31 @@ public abstract class Electrodomestico {
                 if (precioBase >= 100) return;
                 break;
             case 'B':
-                if (precioBase >= 80 || precioBase < 100) return;
+                if (precioBase >= 80 && precioBase < 100) return;
                 break;
             case 'C':
-                if (precioBase >= 60 || precioBase < 80) return;
+                if (precioBase >= 60 && precioBase < 80) return;
                 break;
             case 'D':
-                if (precioBase >= 50 || precioBase < 60) return;
+                if (precioBase >= 50 && precioBase < 60) return;
                 break;
             case 'E':
-                if (precioBase >= 30 || precioBase < 50) return;
+                if (precioBase >= 30 && precioBase < 50) return;
                 break;
             case 'F':
-                if (precioBase >= 10 || precioBase < 30) return;
+                if (precioBase >= 10 && precioBase < 30) return;
                 break;
             }
-        //throw new ProductoIncorrecto("No es correcto la letra con precio");
+        throw new ProductoIncorrecto("No es correcto la letra con precio");
     }
 
-    private void comprobarColor(String color) throws Exception{
+    private void comprobarColor(String color) throws Exception {
         boolean encontrado = false;
-        for (int i = 0; i < COLORES.values().length; i++) {
-            if (COLORES.values()[i].toString().equals(color)) encontrado = true;
+        for (int i = 0; i < Colores.values().length; i++) {
+            if (Colores.values()[i].toString().equals(color.toLowerCase())) encontrado = true;
         }
         if (encontrado == false) {
-            //throw new ProductoIncorrecto("El color no está dentro de la gama");
+            throw new ProductoIncorrecto("El color no está dentro de la gama");
         }
     }
 

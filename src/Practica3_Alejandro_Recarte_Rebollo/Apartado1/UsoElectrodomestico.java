@@ -5,7 +5,7 @@ public class UsoElectrodomestico {
     public static void main(String[] args) {
         try {
             Electrodomestico[] electrodomesticos = new Electrodomestico[5];
-            Lavadora lavadora1 = new Lavadora(150, "verde", 'A', 50, 40);
+            Lavadora lavadora1 = new Lavadora(150, "blanco", 'A', 50, 40);
             Lavadora lavadora2 = new Lavadora(80, "negro", 'B', 50, 20);
             Lavadora lavadora3 = new Lavadora(70, "azul", 'C', 20, 30);
             Television television1 = new Television(40, "rojo", 'E', 10, 50, true);
@@ -15,6 +15,14 @@ public class UsoElectrodomestico {
             electrodomesticos[2] = lavadora3;
             electrodomesticos[3] = television1;
             electrodomesticos[4] = television2;
+
+            //EXCEPCIONES
+
+            //Letra con precio
+            //Lavadora lavadoraLetraPrecio = new Lavadora (200, "blanco", 'F', 50, 40);
+
+            //Color dentro de la gama
+            //Lavadora lavadoraColorGama = new Lavadora (150, "verde", 'A', 50, 40);
 
             double precioTotal = 0;
 

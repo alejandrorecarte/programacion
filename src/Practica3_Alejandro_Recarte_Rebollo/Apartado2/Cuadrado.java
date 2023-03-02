@@ -6,7 +6,7 @@ public class Cuadrado extends Figura{
 
     public Cuadrado(int lado) throws ExcepcionCuadrado {
         if(lado <= 0){
-            throw new ExcepcionCuadrado();
+            throw new ExcepcionCuadrado("Un lado no puede ser igual o menor que 0");
         }
         this.lado = lado;
         setArea(lado*lado);
