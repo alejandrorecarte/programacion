@@ -4,15 +4,45 @@ public class Cuadrado extends Figura{
 
     private int lado;
 
+    //CONSTRUCTOR
+
+    /**
+     * Constructor parametrizado, lanza la excepción si no cumple con los requisitos.
+     * @param lado
+     * @throws ExcepcionCuadrado
+     */
     public Cuadrado(int lado) throws ExcepcionCuadrado {
         if(lado <= 0){
             throw new ExcepcionCuadrado("Un lado no puede ser igual o menor que 0");
         }
         this.lado = lado;
-        setArea(lado*lado);
-        setVolumen(lado*lado*lado);
+        this.area = lado*lado;
+        this.volumen = lado*lado*lado;
     }
 
+    //GETTERS y SETTERS
+
+    /**
+     * Devuelve el valor de lado
+     * @return lado
+     */
+    public int getLado() {
+        return lado;
+    }
+
+    /**
+     * Cambia el valor de lado
+     * @param lado
+     */
+    public void setLado(int lado) {
+        this.lado = lado;
+    }
+
+    //METODOS
+
+    /**
+     * Imprime por pantalla el cuadrado con el lado que tenga como atributo.
+     */
     @Override
     public void dibujar() {
         if(lado == 1) System.out.println("▢");

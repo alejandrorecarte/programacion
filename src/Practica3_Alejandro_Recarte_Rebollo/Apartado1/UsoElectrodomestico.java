@@ -19,7 +19,7 @@ public class UsoElectrodomestico {
             //EXCEPCIONES
 
             //Letra con precio
-            //Lavadora lavadoraLetraPrecio = new Lavadora (200, "blanco", 'F', 50, 40);
+            //Lavadora lavadoraLetraPrecio = new Lavadora (20, "blanco", 'A', 50, 40);
 
             //Color dentro de la gama
             //Lavadora lavadoraColorGama = new Lavadora (150, "verde", 'A', 50, 40);

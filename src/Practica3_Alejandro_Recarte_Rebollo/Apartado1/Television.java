@@ -14,11 +14,25 @@ public class Television extends Electrodomestico{
 
     //CONSTRUCTORES
 
+    /**
+     * Constructor por defecto.
+     */
     public Television() {
         super();
         resolucion = RESOLUCION_DEFECTO;
         sintonizadorTDT=SINTONIZADOR_TDT_DEFECTO;
     }
+
+    /**
+     * Constructor parametrizado, lanza la excepción si no cumple con los requisitos.
+     * @param precioBase
+     * @param color
+     * @param consumoEnergetico
+     * @param peso
+     * @param resolucion
+     * @param sintonizadorTDT
+     * @throws Exception
+     */
     public Television(double precioBase, String color, char consumoEnergetico, int peso, int resolucion, boolean sintonizadorTDT) throws Exception {
         super(precioBase, color, consumoEnergetico, peso);
         this.resolucion = resolucion;
@@ -45,6 +59,11 @@ public class Television extends Electrodomestico{
     }
 
     //MÉTODOS
+
+    /**
+     * Devuelve el cálculo del precio final.
+     * @return precio
+     */
     @Override
     public double precioFinal(){
         double valorAñadido = 0;

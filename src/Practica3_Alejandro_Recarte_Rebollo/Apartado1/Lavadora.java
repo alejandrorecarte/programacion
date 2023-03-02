@@ -12,12 +12,24 @@ public class Lavadora extends Electrodomestico{
 
     //CONSTRUCTORES
 
+    /**
+     * Constructor por defecto.
+     */
     public Lavadora(){
         super();
         this.carga = CARGA_DEFECTO;
         precioFinal();
     }
 
+    /**
+     * Constructor parametrizado, lanza la excepción si no cumple con los requisitos.
+     * @param precioBase
+     * @param color
+     * @param consumoEnergetico
+     * @param peso
+     * @param carga
+     * @throws Exception
+     */
     public Lavadora(double precioBase, String color, char consumoEnergetico, int peso, int carga) throws Exception {
         super(precioBase, color, consumoEnergetico, peso);
         this.carga = carga;
@@ -32,6 +44,10 @@ public class Lavadora extends Electrodomestico{
 
     //MÉTODOS
 
+    /**
+     * Devuelve el cálculo del precio final de la lavadora
+     * @return precio
+     */
     @Override
     public double precioFinal() {
         if(carga > 30){

@@ -17,6 +17,9 @@ public abstract class Electrodomestico {
 
     //CONSTRUCTORES
 
+    /**
+     * Constructor por defecto.
+     */
     protected Electrodomestico(){
         this.precioBase= PRECIO_DEFECTO;
         this.color = COLOR_DEFECTO;
@@ -24,12 +27,25 @@ public abstract class Electrodomestico {
         this.consumoEnergetico = CONSUMO_DEFECTO;
     }
 
+    /**
+     * Constructor con dos parámetros, el resto por defecto.
+     * @param precioBase
+     * @param peso
+     */
     protected Electrodomestico(double precioBase, int peso) {
         this();
         this.precioBase = precioBase;
         this.peso = peso;
     }
 
+    /**
+     * Constructor parametrizado, lanza la excepción si sus atributos no cumplen con los requisitos.
+     * @param precioBase
+     * @param color
+     * @param consumoEnergetico
+     * @param peso
+     * @throws Exception
+     */
     protected Electrodomestico(double precioBase, String color, char consumoEnergetico, int peso) throws Exception {
         this(precioBase, peso);
         comprobarColor(color);
@@ -81,7 +97,13 @@ public abstract class Electrodomestico {
         this.peso = peso;
     }
 
-    //CONTROL DE EXCEPCIONES
+    //MÉTODOS
+
+    /**
+     * Lanza excepción si el consumo energético no se corresponde con el precio base.
+     * @param letra
+     * @throws Exception
+     */
     private void comprobarConsumoEnergetico(char letra) throws Exception{
         switch (letra) {
             case 'A':
@@ -106,6 +128,11 @@ public abstract class Electrodomestico {
         throw new ProductoIncorrecto("No es correcto la letra con precio");
     }
 
+    /**
+     * Lanza excepción si el color no se encuentra dentro del enumerado Colores.
+     * @param color
+     * @throws Exception
+     */
     private void comprobarColor(String color) throws Exception {
         boolean encontrado = false;
         for (int i = 0; i < Colores.values().length; i++) {
@@ -116,7 +143,10 @@ public abstract class Electrodomestico {
         }
     }
 
-    //MÉTODOS
+    /**
+     * Devuelve el cálculo del precio final
+     * @return precio
+     */
     protected double precioFinal() {
         double precio = precioBase;
             switch (getConsumoEnergetico()) {
