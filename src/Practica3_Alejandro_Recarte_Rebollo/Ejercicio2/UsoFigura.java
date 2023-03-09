@@ -1,4 +1,4 @@
-package Practica3_Alejandro_Recarte_Rebollo.Apartado2;
+package Practica3_Alejandro_Recarte_Rebollo.Ejercicio2;
 
 public class UsoFigura {
 

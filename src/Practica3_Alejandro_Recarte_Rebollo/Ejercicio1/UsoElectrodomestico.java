@@ -1,4 +1,4 @@
-package Practica3_Alejandro_Recarte_Rebollo.Apartado1;
+package Practica3_Alejandro_Recarte_Rebollo.Ejercicio1;
 
 public class UsoElectrodomestico {
 
