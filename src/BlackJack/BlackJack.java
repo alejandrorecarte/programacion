@@ -8,7 +8,6 @@ import java.util.Collections;
      * @author Alejandro Recarte Rebollo
      * @version 1.1
      */
-
 public class BlackJack {
 
     //LINKED LISTS

@@ -46,7 +46,7 @@ public class Cuadrado extends Figura{
     @Override
     public void dibujar() {
         if(lado == 1) System.out.println("▢");
-        else if(lado == 2) System.out.println("┌ ┐\n└ ┘ ");
+        else if(lado == 2) System.out.println("┌ \n└ ┘ ");
         else {
             String[][] dibujo = new String[lado][lado];
 
@@ -67,7 +67,7 @@ public class Cuadrado extends Figura{
             }
 
             dibujo[0][0] = "┌ ";
-            dibujo[0][lado - 1] = " ┐";
+            dibujo[0][lado - 1] = " ";
             dibujo[lado - 1][0] = "└ ";
             dibujo[lado - 1][lado - 1] = " ┘";
 

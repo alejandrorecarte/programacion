@@ -38,9 +38,9 @@ public final class Programador {
             case senior: salarioBase = 27000; break;
             case jefe_proyecto: salarioBase = 35000; break;
         }
-
         this.salarioNeto = calcularSalarioNeto();
     }
+
 
     public String getNombre() {
         return nombre;
@@ -94,8 +94,13 @@ public final class Programador {
         return categoria;
     }
 
-    public void setCategoria(Categoria categoria) {
-        this.categoria = categoria;
+    public void setCategoria(String categoria) throws IllegalArgumentException{
+        try{
+            this.categoria = Categoria.valueOf(categoria);
+        }catch (Exception e) {
+            throw new IllegalArgumentException("La categoría no es correcta");
+        }
+
     }
 
     private double calcularSalarioNeto(){
@@ -156,5 +161,18 @@ public final class Programador {
                 if (letra == 'E') return true;
         }
         return false;
+    }
+
+    @Override
+    public String toString() {
+        return "Programador{" +
+                "nombre='" + nombre + '\'' +
+                ", dni='" + dni + '\'' +
+                ", salarioBase=" + salarioBase +
+                ", retencion=" + retencion +
+                ", salarioNeto=" + salarioNeto +
+                ", lenguaje_programacion='" + lenguaje_programacion + '\'' +
+                ", categoria=" + categoria +
+                '}';
     }
 }

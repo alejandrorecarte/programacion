@@ -106,24 +106,12 @@ public abstract class Electrodomestico {
      */
     private void comprobarConsumoEnergetico(char letra) throws Exception{
         switch (letra) {
-            case 'A':
-                if (precioBase >= 100) return;
-                break;
-            case 'B':
-                if (precioBase >= 80 && precioBase < 100) return;
-                break;
-            case 'C':
-                if (precioBase >= 60 && precioBase < 80) return;
-                break;
-            case 'D':
-                if (precioBase >= 50 && precioBase < 60) return;
-                break;
-            case 'E':
-                if (precioBase >= 30 && precioBase < 50) return;
-                break;
-            case 'F':
-                if (precioBase >= 10 && precioBase < 30) return;
-                break;
+            case 'A': if (precioBase >= 100) return; break;
+                case 'B': if (precioBase >= 80 && precioBase < 100) return; break;
+                    case 'C': if (precioBase >= 60 && precioBase < 80) return; break;
+                        case 'D': if (precioBase >= 50 && precioBase < 60) return; break;
+                            case 'E': if (precioBase >= 30 && precioBase < 50) return; break;
+                                case 'F': if (precioBase >= 10 && precioBase < 30) return; break;
             }
         throw new ProductoIncorrecto("No es correcto la letra con precio");
     }

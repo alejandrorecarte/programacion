@@ -66,13 +66,13 @@ public class Television extends Electrodomestico{
      */
     @Override
     public double precioFinal(){
-        double valorAñadido = 0;
+        double valorAnyadido = 0;
         if (resolucion > 40){
-            valorAñadido += getPrecioBase()*0.3;
+            valorAnyadido += getPrecioBase()*0.3;
         }
         if (sintonizadorTDT == true){
-            valorAñadido += 50;
+            valorAnyadido += 50;
         }
-        return super.precioFinal()+valorAñadido;
+        return super.precioFinal()+valorAnyadido;
     }
 }
